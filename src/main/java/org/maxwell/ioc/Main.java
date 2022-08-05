@@ -1,6 +1,8 @@
 package org.maxwell.ioc;
 
 import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.w3c.dom.Document;
 
@@ -19,13 +21,9 @@ public class Main {
 
     public static void main(String[] args) {
         XmlBeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
-        Student student = beanFactory.getBean(Student.class);
-        System.out.println(student.getName());
-//        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-//        Student student = context.getBean(Student.class);
-//        System.out.println(student.getName());
-        BeanNameImpl bean = beanFactory.getBean(BeanNameImpl.class);
-        System.out.println(bean.getBeanName());
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MaxwellScan.class);
+        Emplyoee emplyoee = applicationContext.getBean(Emplyoee.class);
+        System.out.println(emplyoee);
 
     }
 
